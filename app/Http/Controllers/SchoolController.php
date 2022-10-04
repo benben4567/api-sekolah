@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\School;
+use Illuminate\Http\Request;
+
+class SchoolController extends Controller
+{
+    public function index(Request $request)
+    {
+        if ($request->has('q') && $request->has('province_id')) {
+            $school = School::where('nama', 'like', '%' . $request->q . '%')
+                ->where('province_id', $request->province_id)
+                ->simplePaginate(5);
+
+            $school->appends($request->all());
+            if ($school->count() > 0) {
+                return response()->json([
+                    'message' => 'success',
+                    'data' => $school
+                ], 200);
+            } else {
+                return response()->json([
+                    'message' => 'success',
+                    'data' => null
+                ], 404);
+            }
+        } else {
+            return response()->json([
+                'message' => 'success',
+                'data' => null
+            ], 404);
+        }
+    }
+}
