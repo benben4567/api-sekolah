@@ -37,7 +37,7 @@ class SchoolController extends Controller
     public function npsn($npsn)
     {
         $school = School::where('npsn', $npsn)->first();
-        if ($school->count() > 0) {
+        if ($school) {
             return response()->json([
                 'message' => 'success',
                 'data' => $school
