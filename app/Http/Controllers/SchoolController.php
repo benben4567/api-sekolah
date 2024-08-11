@@ -33,4 +33,20 @@ class SchoolController extends Controller
             ], 404);
         }
     }
+
+    public function npsn($npsn)
+    {
+        $school = School::where('npsn', $npsn)->first();
+        if ($school->count() > 0) {
+            return response()->json([
+                'message' => 'success',
+                'data' => $school
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'success',
+                'data' => null
+            ], 404);
+        }
+    }
 }
