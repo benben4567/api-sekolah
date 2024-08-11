@@ -19,3 +19,4 @@ $router->get('/', function () use ($router) {
 
 $router->get('/province', 'ProvinceController@index');
 $router->get('/school', 'SchoolController@index');
+$router->get('/school/npsn/{npsn}', 'SchoolController@npsn');
