@@ -17,18 +17,21 @@ class SchoolController extends Controller
             $school->appends($request->all());
             if ($school->count() > 0) {
                 return response()->json([
-                    'message' => 'success',
+                    'message' => 'Data ditemukan',
+                    'success' => true,
                     'data' => $school
                 ], 200);
             } else {
                 return response()->json([
-                    'message' => 'success',
+                    'message' => 'Data tidak ditemukan',
+                    'success' => false,
                     'data' => null
                 ], 404);
             }
         } else {
             return response()->json([
-                'message' => 'success',
+                'message' => 'Data tidak ditemukan',
+                'success' => false,
                 'data' => null
             ], 404);
         }
@@ -39,12 +42,14 @@ class SchoolController extends Controller
         $school = School::where('npsn', $npsn)->first();
         if ($school) {
             return response()->json([
-                'message' => 'success',
+                'message' => 'Data ditemukan',
+                'success' => true,
                 'data' => $school
             ], 200);
         } else {
             return response()->json([
-                'message' => 'success',
+                'message' => 'Data tidak ditemukan',
+                'success' => false,
                 'data' => null
             ], 404);
         }
